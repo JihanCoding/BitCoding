@@ -1,0 +1,13 @@
+INDEX VERSION 1.134
+C:\Users\abc\Documents\BitCoding\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\287110582.index
+\Main_Bit\src\main\java
+C:\Users\abc\Documents\BitCoding\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\212884427.index
+\asdas\src\main\java
+C:\Users\abc\Documents\BitCoding\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1380679383.index
+\Main_Bit\src\main\java
+C:\Users\abc\Documents\BitCoding\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1659793634.index
+\asdas\src\main\java
+C:\Users\abc\Documents\BitCoding\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2179744668.index
+\Main_Bit\src\main\java
+C:\Users\abc\Documents\BitCoding\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4103015061.index
+\Main_Bit\src\main\java

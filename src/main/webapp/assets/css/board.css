@@ -1,0 +1,600 @@
+@import
+	url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css')
+	;
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+/* 기본 스타일 초기화 */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh; /* 전체 뷰포트 높이를 사용 */
+	background-color: #ffffff;
+	font-family: 'Noto Sans KR', sans-serif;
+	color: #333;
+	padding-top: 85px;
+	line-height: 1.6;
+	overflow-y: scroll;
+}
+/* 헤더 스타일 */
+header {
+	display: flex;
+	justify-content: center;
+	padding: 15px;
+	background-color: #ffffff;
+	border-bottom: 1px solid #e5e5e5;
+	position: fixed; /* 헤더를 고정 */
+	top: 0;
+	left: 0;
+	width: 100%; /* 화면 전체 너비를 차지 */
+	z-index: 1000; /* 다른 요소 위에 표시 */
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 하단 그림자 추가 */
+}
+
+.header-center {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	max-width: 100%; /* 화면 너비를 완전히 채우도록 설정 */
+	padding: 0 350px; /* 패딩을 동일하게 설정 */
+	flex-wrap: nowrap;
+}
+
+.header-left {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.logo {
+	font-size: 27px;
+	font-weight: bold;
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer; /* 버튼처럼 보이도록 커서 변경 */
+	padding: 5px 10px;
+	border-radius: 5px;
+	transition: background-color 0.3s;
+}
+
+#thinkingText {
+	color: #1E90FF !important; /* Thinking? 텍스트 색상 */
+	margin-right: 5px;
+	font-size: 28px;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+	transition: transform 0.2s ease;
+	font-family: 'DynaPuff', sans-serif;
+    font-variation-settings: "wght" 500;
+}
+
+#feelingText {
+	color: #f56b6b !important; /* Feeling! 텍스트 색상 */
+	font-size: 28px;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+	transition: transform 0.2s ease;
+	font-family: 'DynaPuff', sans-serif;
+    font-variation-settings: "wght" 500;
+}
+
+#thinkingText:hover, #feelingText:hover {
+	transform: scale(1.1);
+}
+
+/* 클릭 시에도 배경색 변화 없음 */
+.logo:active {
+	background-color: transparent;
+}
+/* 랭킹 자유게시판 */
+.header-links a {
+    color: #555;
+    font-size: 15px;
+    text-decoration: none;
+    padding: 8px 15px;
+    transition: color 0.3s, font-weight 0.3s, text-shadow 0.3s;
+    display: inline-block;
+    margin-right: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-variation-settings: "wght" 500;
+}
+
+/* 활성화된 탭 스타일 - 글자만 강조 */
+.header-links a.active {
+    color: #1E90FF; /* 강조된 텍스트 색상 */
+    font-weight: 600; /* 조금 더 두꺼운 글씨체 */
+    text-shadow: 1px 1px 2px rgba(30, 144, 255, 0.3); /* 가벼운 텍스트 그림자 */
+}
+
+/* 비활성화된 탭 hover 효과 */
+.header-links a:hover:not(.active) {
+    color: #1E90FF; /* 텍스트 색상 변경 */
+    text-shadow: 1px 1px 1px rgba(30, 144, 255, 0.2); /* 호버 시 텍스트에 살짝 그림자 추가 */
+}
+
+
+
+.header-right {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.header-right .profile-icon img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: #ccc;
+	object-fit: cover;
+}
+/* 프로필 아이콘 스타일 */
+.profile-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.profile-container {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-menu {
+	display: none;
+	position: absolute;
+	top: 50px;
+	right: 0;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+	z-index: 10;
+	min-width: 120px;
+}
+
+.dropdown-item {
+	display: flex;
+	justify-content: center; /* 글씨를 가운데 정렬 */
+	align-items: center; /* 글씨를 수직 가운데 정렬 */
+	padding: 10px 0; /* 위아래 간격만 두고, 좌우 여백 제거 */
+	color: #000; /* 블랙 텍스트 */
+	font-size: 0.8em;
+	font-weight: bold;
+	text-align: center;
+	background: none;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
+	width: 100%;
+}
+
+.dropdown-item:hover {
+	background-color: #000; /* 호버 시 배경을 검정색으로 */
+	color: #fff; /* 호버 시 텍스트를 흰색으로 */
+}
+
+.dropdown-item:active {
+	background-color: #333; /* 액티브 시 어두운 회색 배경 */
+	color: #fff; /* 액티브 시 흰색 텍스트 */
+}
+
+.dropdown-item.active {
+	background-color: #ddd; /* 선택된 상태를 회색 배경으로 강조 */
+	color: #000; /* 선택된 상태에서 텍스트는 검정색 */
+}
+
+.dropdown-item:first-child {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+.dropdown-item:last-child {
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+/* Icon styling */
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: #555;
+	font-size: 18px;
+	text-decoration: none;
+}
+
+.icon:hover {
+	color: #0073e6;
+}
+
+.icon svg {
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	fill: currentColor;
+}
+
+.icon:hover svg {
+	color: #007bff;
+}
+
+
+/* header 라인------------------------------------------------------------------------------------------------------------*/
+
+/* content-wrapper 스타일 */
+.content-wrapper {
+    padding: 20px 350px; /* 헤더와 동일한 좌우 패딩 */
+  
+}
+
+/* 게시판 제목*/
+.content-wrapper h2 {
+    font-size: 24px;
+   	padding: 0 20px 0;
+    
+}
+
+.description{
+	padding: 20px;
+}
+
+/* 검색 및 글쓰기 버튼 스타일 */
+.board-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 0 20px 0;
+}
+
+.board-controls select, #searchBox {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#searchBtn {
+    padding: 8px 16px;
+    background-color: #1E90FF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#resetBtn{
+	padding: 8px 16px;
+    background-color: #f56b6b;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+	
+}
+
+#searchBtn:hover, #resetBtn:hover {
+    background-color: #0056b3;
+}
+
+/* 테이블 전체 스타일 */
+.table-wrapper {
+    padding: 0 20px;
+}
+
+.board-list {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 테이블 헤더 스타일 */
+.board-list th {
+    background-color: black;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 2px solid #e5e5e5;
+}
+
+/* 테이블 데이터 스타일 */
+.board-list td {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 15px;
+    text-align: center;
+    color: #333;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+/* 짝수 행 배경 색상 변경 */
+.board-list tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+/* 테이블 행 hover 스타일 */
+.board-list tr:hover td {
+    background-color: #f1f5ff;
+}
+
+/* 링크 스타일 */
+.board-list td a {
+    color: #007bff;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.board-list td a:hover {
+    text-decoration: underline;
+}
+
+/* 열 너비 조정 */
+.board-list th:nth-child(1), /* 순번 열 */
+.board-list td:nth-child(1) {
+    width: 10%;
+}
+
+.board-list th:nth-child(2), /* 제목 열 */
+.board-list td:nth-child(2) {
+    width: 50%;
+}
+
+.board-list th:nth-child(3), /* 등록자명 열 */
+.board-list td:nth-child(3) {
+    width: 15%;
+}
+
+.board-list th:nth-child(4), /* 등록일 열 */
+.board-list td:nth-child(4) {
+    width: 15%;
+}
+
+.board-list th:nth-child(5), /* 조회수 열 */
+.board-list td:nth-child(5) {
+    width: 10%;
+}
+
+/* 테이블 바깥 그림자 추가 */
+.table-wrapper {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+    background-color: #ffffff;
+}
+
+/* 'N' 배지 스타일 */
+.new-badge {
+    display: inline-block;
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 2px 5px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+	padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.pagination button {
+	padding: 8px 12px;
+	margin: 0 2px;
+	background-color: #f0f0f0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.pagination button.active {
+	background-color: #007bff;
+	color: #fff;
+	font-weight: bold;
+}
+
+.pagination button:hover:not(.active) {
+	background-color: #e0e0e0;
+}
+
+/* 글쓰기 버튼 */
+.write-button {
+	padding: 0 20px;
+    text-align: right;
+    margin-top: 10px;
+}
+
+.write-button button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.write-button button:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* 모달 스타일 */
+.modal {
+    display: none; /* 기본 상태는 숨김 */
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* 너비를 80%로 설정 */
+    max-width: 800px; /* 최대 너비 */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 모달 콘텐츠 스타일 */
+.modal-content {
+    padding: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom:10px;
+}
+
+/* 모달 헤더 텍스트 크기 */
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* 닫기 버튼 스타일 */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.modal-content p {
+    margin-bottom: 8px;
+}
+
+
+/* 모달 배경 */
+#writeModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* 모달 내용 */
+#writeModal .modal-content {
+    background-color: #fff;
+    padding: 30px;
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+    text-align: center;
+}
+
+/* 모달 닫기 버튼 */
+#writeModal .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* 모달 제목 */
+#writeModal h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 입력 필드 스타일 */
+#writeModal label {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    margin: 15px 0 5px;
+    text-align: left;
+}
+
+#writeModal input[type="text"],
+#writeModal textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+#writeModal input[type="text"]:focus,
+#writeModal textarea:focus {
+    outline: none;
+    border-color: #1e90ff;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.3);
+}
+
+/* 작성하기 버튼 */
+#writeModal .submit-btn {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #1e90ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#writeModal .submit-btn:hover {
+    background-color: #0056b3;
+}
+/* footer 라인 ------------------------------------------------------------------------------------------------------------*/
+.footer {
+	width: 100%;
+	background-color: #f8f9fa;
+	text-align: center;
+	border-top: 0.5px solid #ccc;
+	height: 10vh;
+	position: sticky; /* 푸터를 하단에 고정 */
+	bottom: 0;
+	left: 0;
+	padding: 15px;
+	font-size: 12px;
+	color: #a0a5b0;
+	line-height: 1.6;
+	z-index: 10;
+}
+
+.content-wrapper {
+	flex: 1; /* 남은 공간을 채우도록 설정 */
+
+	padding-bottom: 10vh; /* 푸터 아래 내용이 가려지지 않도록 설정 */
+}
+
+
+
+
+

@@ -1,0 +1,669 @@
+@import
+	url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css')
+	;
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+/* 공통 스타일 */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body, html {
+	width: 100%;
+	height: auto;
+	min-height: 100%;
+	font-family: 'Noto Sans KR', sans-serif;
+	background-color: #f8f9fa; /* 연한 회색 배경 */
+}
+
+.container {
+	display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+	padding-top: 0; /* 헤더 공간 확보 */
+	margin: 0 auto;
+	max-width: 1200px; /* 최대 너비 설정으로 화면에 맞게 조정 */
+}
+
+/* 헤더 스타일 */
+.header {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1000;
+	width: 100%;
+	max-width: 800px;
+	background-color: #ffffff;
+	padding: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;	
+	border: 0.5px solid #ccc;
+	text-align: center;
+}
+/* .logoimg{
+	width:50px;
+	height:50px;
+	margin-right: 10px;
+} */
+.header-center {
+	display: inline-flex;
+	align-items: center;
+}
+
+.logo {
+	font-size: 27px;
+	font-weight: bold;
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	padding: 5px 10px;
+	border-radius: 5px;
+	transition: background-color 0.3s;
+	margin-bottom:10px;
+}
+
+#thinkingText {
+	color: #6C63FF !important; /* Thinking? 텍스트 색상 */
+	margin-right: 10px;
+	font-size: 35px;
+	font-weight: bold;
+	font-family: 'DynaPuff', sans-serif;
+	font-variation-settings: "wght" 500;
+	transition: transform 0.2s ease;
+}
+#feelingText {
+	color: #FF5C5C !important; /* Feeling! 텍스트 색상 */
+	font-size: 35px;
+	font-weight: bold;
+	font-family: 'DynaPuff', sans-serif;
+	font-variation-settings: "wght" 500;
+	transition: transform 0.2s ease;
+}
+
+#thinkingText:hover, #feelingText:hover{
+	transform: scale(1.1);
+}
+
+/* 메인 컨테이너 스타일 */
+.main {
+	flex-grow: 1;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-sizing: border-box;
+}
+.login-prompt {	
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #6b7280; /* 기본 텍스트 색상 */
+  margin-top: 20px; /* 로그인 버튼과의 간격 */
+}
+
+.login-prompt span {
+  margin-right: 5px;
+}
+
+.login-link {
+  color: #333; /* 기본 링크 색상: 어두운 회색 */
+  font-weight: bold; /* 모든 상태에서 bold */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.1s, font-size 0.1s; /* 색상 및 글씨 크기 전환 애니메이션 */
+  font-size: 14px; /* 기본 글씨 크기 */
+}
+
+.login-link:hover {
+  color: #555; /* hover 상태에서 중간 회색 */
+  font-size: 15px; /* hover 상태에서 글씨 크기 확대 */
+}
+
+.login-link:active {
+  color: #111; /* active 상태에서 더 어두운 회색 */
+}
+
+.login-link .arrow {
+  font-size: 18px; /* 화살표 크기 조정 */
+  font-weight: bold;
+  margin-left: 3px;
+}
+
+
+/* 로그인 폼 스타일 */
+.login-form {
+	width: 100%;
+	max-width: 800px; /* 로그인 폼과 푸터의 최대 너비를 동일하게 설정 */
+	padding: 30px;
+	background-color: #ffffff;
+	border: 0.5px solid #ccc;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	overflow-y: auto;
+	margin-top: 60px;
+	box-sizing: border-box;
+	flex-grow: 1;
+	height: 84vh;
+}
+
+/* 푸터 스타일 */
+.footer {
+	width: 100%;
+	max-width: 800px; /* 로그인 폼과 동일한 최대 너비 설정 */
+	background-color: #f8f9fa; /* 연한 회색 배경 */
+	text-align: center;
+	border: 0.5px solid #ccc;
+	box-sizing: border-box;
+	height: 10vh;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto; /* 가운데 정렬 */
+	padding: 15px;
+	font-size: 12px;
+	color: #a0a5b0; /* 텍스트 색상 */
+	line-height: 1.6;
+}
+
+.content-wrapper {
+	width: 100%;
+	max-width: 400px; /* 컨텐츠 너비 확장 */
+	height: 100vh;
+	text-align: center;
+	margin-bottom: 600px;
+}
+
+h2 {
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 10px;
+}
+
+.description {
+	font-size: 16px;
+	color: #6c757d;
+	margin-bottom: 20px;
+}
+
+/* 카카오 버튼 스타일 */
+.kakao-button {
+	background-color: #fee500; /* 카카오톡 노란색 */
+	color: #3c1e1e;
+	padding: 14px;
+	border: none;
+	border-radius: 4px;
+	font-size: 18px;
+	font-weight: bold;
+	width: 100%;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	margin-bottom: 20px;
+	
+}
+
+.kakao-button:hover {
+	background-color: #fdd835; /* 호버 시 조금 더 진한 노란색 */
+	
+}
+
+.kakao-icon {
+	width: 30px;
+	height: 30px;
+	margin-right: 8px;
+	vertical-align: middle;
+}
+
+
+/* 섹션 구분선 스타일 */
+.divider {
+	font-size: 14px;
+	color: #aaa;
+	text-align: center;
+	margin: 20px 0;
+	position: relative;
+}
+
+.divider::before, .divider::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	width: 40%;
+	height: 1px;
+	background-color: #ddd;
+}
+
+.divider::before {
+	left: 0;
+}
+
+.divider::after {
+	right: 0;
+}
+
+/* 이메일 버튼 스타일 */
+.email-button {
+	background-color: #e8f0ff; /* 더 연하고 파란빛이 도는 회색으로 변경 */
+	color: #333; /* 텍스트 색상 유지 */
+	padding: 14px;
+	border: none;
+	border-radius: 4px;
+	font-size: 18px;
+	font-weight: 600;
+	cursor: pointer;
+	width: 100%;
+	margin-bottom: 20px;
+	
+	
+}
+
+.email-button:hover {
+	background-color: #cdd7ff; /* 호버 시 조금 더 진한 파란빛 회색으로 변경 */
+	
+}
+
+/* 이메일 폼 스타일 */
+.email-form {
+	display: none;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 20px;
+	animation: expand 0.3s ease-in-out forwards;
+}
+
+.email-form input {
+	width: 100%;
+	padding: 15px;
+	font-size: 16px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	outline: none;
+	transition: border-color 0.3s;
+}
+
+.email-form input:focus {
+	border-color: #74c0fc;
+}
+
+.email-form button {
+	width: 100%;
+	padding: 15px;
+	font-size: 18px;
+	font-weight: 600;
+	background-color: #40c057;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.email-form button:hover {
+	background-color: #37b24d;
+}
+
+@keyframes expand {from { height:0;
+	
+}
+
+to {
+	height: auto;
+}
+
+
+}
+/* 떨림 애니메이션 */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+  display: inline-block; /* 애니메이션이 적용되는 요소에 inline-block 적용 */
+  animation: shake 0.4s ease-in-out;
+}
+
+/* 떨림 애니메이션 */
+@keyframes shakes {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.shakes {
+  display: inline-block; /* 애니메이션이 적용되는 요소에 inline-block 적용 */
+  animation: shake 0.4s ease-in-out;
+}
+#nick_check{
+	margin-bottom:0 !important;
+}
+#result, #checkNick {
+	color: #e53e3e; /* 붉은색 */
+	font-size: 13px;
+	margin-top: 6px !important;
+	margin-bottom: 6px !important;
+	margin-left: 6px !important;
+	display: flex;
+	justify-content: flex-start; /* 수평 정렬을 왼쪽으로 */
+	font-weight: 500;
+}
+/* 전체 폼 스타일 */
+#join-form {
+	margin: 0;
+}
+
+/* 회원가입 폼 레이블 스타일 */
+#join-form label {
+	display: block; /* 블록 요소로 설정하여 입력 필드와 레이블을 분리 */
+	margin-bottom: 8px; /* 입력 필드와 떨어지는 여백 줄임 */
+	font-size: 1em;
+	font-weight: bold; /* 글씨를 더 두껍게 */
+	color: #333333; /* 진한 회색으로 설정 */
+	text-align: left; /* 레이블을 왼쪽 끝으로 배치 */
+}
+
+#join-form input[type="email"] {
+	width: 100%;
+	padding: 15px;
+	margin-bottom:0;
+	border: 1px solid #cccccc; /* 부드러운 회색 테두리 */
+	border-radius: 8px;
+	background-color: #ffffff; /* 흰색 배경 */
+	color: #333333; /* 진한 회색 텍스트 */
+	font-size: 1em;
+	box-sizing: border-box;
+}
+/* 회원가입 폼 입력 필드 스타일 */
+#join-form input[type="text"], #join-form input[type="password"],
+	#join-form input[type="tel"], #join-form input[type="date"], #join-form select
+	{
+	width: 100%;
+	padding: 15px;
+	margin-bottom: 10px;
+	border: 1px solid #cccccc; /* 부드러운 회색 테두리 */
+	border-radius: 8px;
+	background-color: #ffffff; /* 흰색 배경 */
+	color: #333333; /* 진한 회색 텍스트 */
+	font-size: 1em;
+	box-sizing: border-box;
+}
+
+/* 입력 필드 포커스 시 스타일 */
+#join-form input[type="text"]:focus, #join-form input[type="email"]:focus,
+	#join-form input[type="password"]:focus, #join-form input[type="tel"]:focus,
+	#join-form input[type="date"]:focus, #join-form select:focus {
+	border-color: #3498db; /* 포커스 시 파란색 테두리 */
+	
+	outline: none;
+}
+
+/* 회원가입 폼 제출 버튼 스타일 */
+#join-form button[type="submit"] {
+	display: block;
+	width: 100%;
+	padding: 15px;
+	margin-top: 30px;
+	background-color: #cdd7ff; /* 검은색 배경 */
+	color: #ffffff; /* 흰색 텍스트 */
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+#join-form button[type="submit"]:hover {
+	background-color: #6C63FF; /* 어두운 검은색으로 변경 */
+}
+
+#join-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+/* 파일 업로드 버튼 스타일 */
+.file-upload {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+}
+
+.file-upload input[type="file"] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.file-upload .file-name {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #555;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
+}
+
+/* 이미지 미리보기 스타일 */
+#preview {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#preview img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+}
+
+/* 모달 기본 스타일 */
+.modal {
+	display: none; /* 기본적으로 숨김 */
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	max-width: 600px;
+	background-color: #ffffff;
+	border-radius: 10px;
+
+	z-index: 1002; /* 배경보다 앞에 오도록 설정 */
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+/* 모달 배경 */
+.modal-backdrop {
+	display: none; /* 기본적으로 숨김 */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1001; /* 모달 뒤에 위치하도록 설정 */
+}
+
+/* 모달 기본 스타일 */
+.modal {
+	display: none; /* 기본적으로 숨김 */
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	max-width: 1200px; /* 모달 크기 원상복구 */
+	background-color: #ffffff; /* 흰색 배경 */
+	border-radius: 10px;
+	
+	z-index: 1002; /* 배경보다 앞에 오도록 설정 */
+	padding: 20px;
+	box-sizing: border-box;
+	overflow-x: auto; /* 작은 화면에서 가로 스크롤 추가 */
+}
+
+/* 모달 배경 */
+.modal-backdrop {
+	display: none; /* 기본적으로 숨김 */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1001; /* 모달 뒤에 위치하도록 설정 */
+}
+
+/* 모달 헤더 스타일 */
+.modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid #000000; /* 하단 테두리 검은색 */
+	padding-bottom: 15px;
+	margin-bottom: 20px;
+}
+
+.modal-header h2 {
+	margin: 0;
+	font-size: 1.8em;
+	color: #000000; /* 검은색 텍스트 */
+}
+
+.close-modal-button {
+	cursor: pointer;
+	font-size: 1.5em;
+	color: #000000; /* 검은색 */
+}
+
+.close-modal-button:hover {
+	color: #555555; /* 어두운 회색으로 변경 */
+}
+
+/* 제출 버튼 스타일 */
+#join2 {
+	display: block;
+	width: 100%;
+	padding: 15px;
+	margin-top: 20px;
+	background-color: #6C63FF; /* 검은색 배경 */
+	color: #ffffff; /* 흰색 텍스트 */
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+#join2:hover {
+	background-color: #6C63FF; /* 어두운 검은색으로 변경 */
+}
+
+/* 전체 테이블 배경 색상과 스타일 */
+.survey-table {
+	width: 100%;
+	background-color: #ffffff; /* 흰색 배경 */
+	border-collapse: collapse;
+	border-radius: 12px; /* 모서리 둥글게 변경 */
+	overflow: hidden; /* 테두리 바깥부분 숨김 */
+}
+
+/* "질문" 헤더 셀 전용 스타일 */
+.survey-table .question-header {
+	background-color: #6C63FF; /* 검은색 배경 */
+	color: #ffffff; /* 흰색 텍스트 */
+	padding: 10px 15px;
+	font-weight: bold;
+	font-size: 16px;
+	text-align: left; /* 왼쪽 정렬 */
+	width: 47%; /* 질문 컬럼 너비 지정 */
+}
+
+/* 헤더 텍스트 스타일 및 패딩 추가 */
+.survey-table th {
+	background-color: #6C63FF; /* 검은색 배경 */
+	color: #ffffff; /* 흰색 텍스트 */
+	padding: 10px 15px;
+	font-weight: bold;
+	font-size: 15px;
+	text-align: center;
+	vertical-align: middle;
+	border-bottom: 3px solid #333333; /* 헤더와 본문 구분을 위한 어두운 검은색 테두리 */
+}
+
+/* 질문 셀과 라디오 버튼 스타일 추가 조정 */
+.survey-table .question {
+	text-align: left;
+	padding: 10px 15px;
+	background-color: #f0f0f0; /* 부드러운 밝은 회색 */
+	color: #000000; /* 검은색 텍스트 */
+	font-size: 15px;
+	vertical-align: middle;
+	line-height: 1.8em; /* 행간을 조금 더 넓게 */
+	border-bottom: 1px solid #bdc3c7; /* 각 질문 하단 구분선 추가 */
+}
+
+/* 라디오 버튼 스타일 */
+.survey-table .options {
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff; /* 옵션 배경 흰색 */
+	padding: 20px; /* 셀 내부 여백 추가 */
+	border-bottom: 1px solid #bdc3c7;
+	background-color: #ffffff; /* 각 옵션 하단 구분선 추가 */
+}
+
+.survey-table .options input[type="radio"] {
+	transform: scale(1.4); /* 라디오 버튼 크기 */
+	margin: 0 10px;
+	cursor: pointer; /* 마우스 커서 변경 */
+	accent-color: #000000; /* 라디오 버튼 색상 검은색 */
+}
+
+/* 구분선 스타일 */
+.survey-table .divider td {
+	border-bottom: 2px solid #bdc3c7; /* 행 구분선 밝은 회색 */
+}
+
+/* 반응형 개선: 작은 화면에서 라디오 버튼 간격 조정 */
+@media ( max-width : 480px) {
+	.survey-table th, .survey-table td {
+		padding: 12px 8px;
+		font-size: 13px;
+	}
+	.survey-table .options input[type="radio"] {
+		transform: scale(1.2); /* 작은 화면에서 라디오 버튼 크기 감소 */
+		margin: 0 6px;
+	}
+	.survey-table .question {
+		font-size: 13px;
+	}
+}

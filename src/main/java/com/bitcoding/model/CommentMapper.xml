@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcoding.model.CommentDAO">
+	<!-- cmt_idx, post_idx, cmt_content, create_at, email, nick, profile -->
+	<!-- 댓글 생성 -->
+	<insert id="cmt_create"
+		parameterType="com.bitcoding.model.Comment">
+		insert into comments
+		values(
+		comments_SEQ.nextval,
+		#{post_idx},
+		#{cmt_content},
+		sysdate,
+		#{email},
+		#{nick},
+		#{profile},
+		#{co_like},
+		#{co_chat}
+		)
+	</insert>
+
+	<!-- 댓글 전체 조회 -->
+	<select id="cmt_searchall"
+		resultType="com.bitcoding.model.Comment">
+		select * from comments
+		ORDER BY
+		cmt_idx asc
+	</select>
+
+	<!-- 댓글 삭제 -->
+	<delete id="cmt_delete" parameterType="com.bitcoding.model.Comment">
+		delete from comments
+		where
+		post_idx
+		= #{post_idx}
+	</delete>
+	
+	<update id="cmt_update_reaction" parameterType="com.bitcoding.model.Comment">
+		update comments
+		set
+		co_like = #{co_like},
+		co_chat = #{co_chat}
+		where 
+		cmt_idx = #{cmt_idx} and
+		post_idx = #{post_idx}
+	</update>
+	<!-- 회원탈퇴 시 전체삭제 -->
+	<delete id="cmt_delete_mem" parameterType="com.bitcoding.model.Comment">
+		delete from comments
+		where
+		email=#{email}
+	</delete>
+</mapper>

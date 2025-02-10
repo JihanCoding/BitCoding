@@ -1,0 +1,2 @@
+INDEX VERSION 1.4+C:\Users\abc\Documents\BitCoding\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3890774670.index

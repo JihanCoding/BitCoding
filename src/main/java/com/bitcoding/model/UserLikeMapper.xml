@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcoding.model.UserLikeDAO">
+
+	<!-- user_id, po_like, co_like -->
+	<!-- 해당하는 데이터 가져오기-->
+	<select id="user_like_get" resultType="com.bitcoding.model.UserLike">
+		select * from user_like
+		where user_id = #{user_id}
+	</select>
+
+	<!-- user_id, po_like, co_like -->
+	<!-- po_like순으로 정렬 desc-->
+	<select id="po_like_select" resultType="com.bitcoding.model.UserLike">
+		select * from user_like
+		order by po_like desc
+	</select>
+	
+	<!-- co_like순으로 정렬 desc-->
+	<select id="co_like_select" resultType="com.bitcoding.model.UserLike">
+		select * from user_like
+		order by co_like desc
+	</select>
+	
+	<!-- 그냥 전체 데이터 -->
+	<select id="user_like_all" resultType="com.bitcoding.model.UserLike">
+		select * from user_like
+	</select>
+
+	<!-- user_like 생성 (회원가입 할 때 최초 생성) -->
+	<insert id="user_like_create" parameterType="com.bitcoding.model.UserLike">
+		insert into user_like
+		values(
+		#{user_id},
+		#{po_like},
+		#{co_like}
+		)
+	</insert>
+
+	<!-- 상태 업데이트 -->
+	<update id="user_like_update" parameterType="com.bitcoding.model.UserLike">
+		update user_like
+		set
+		po_like = #{po_like},
+		co_like = #{co_like}
+		where user_id =
+		#{user_id}
+	</update>
+	
+	<delete id="ul_delete_mem" parameterType="com.bitcoding.model.UserLike">
+		delete from user_like
+		where user_id = #{user_id}
+	</delete>
+</mapper>

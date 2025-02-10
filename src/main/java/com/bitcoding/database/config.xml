@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- properties 파일에 담아둔 데이터를 가져오기 -->
+	<properties resource="com/bitcoding/database/db.properties"></properties>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			
+			<!-- Connection Pool을 생성하기위한 정보 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 우리가 사용하는 mapper.xml의 위치 알려주기 -->
+	<mappers>
+		<mapper resource="com/bitcoding/model/MemberMapper.xml" />
+		<mapper resource="com/bitcoding/model/PostMapper.xml" />
+		<mapper resource="com/bitcoding/model/CommentMapper.xml" />
+		<mapper resource="com/bitcoding/model/LikeMapper.xml" />
+		<mapper resource="com/bitcoding/model/UserLikeMapper.xml" />
+	</mappers>
+</configuration>

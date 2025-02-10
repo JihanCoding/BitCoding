@@ -1,0 +1,5 @@
+INDEX VERSION 1.134+C:\Users\abc\Documents\BitCoding\.metadata\.plugins\org.eclipse.jdt.core
+3111326172.index
+3890774670.index
+2405296491.index
+1865797976.index
